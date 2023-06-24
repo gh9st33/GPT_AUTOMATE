@@ -127,7 +127,7 @@ while not done:
     player2.display(screen)
 
     # Draw the score
-    score_text = font.render(str(score1) + " - " + str(score2), True, WHITE)
+    score_text = font.render(f"{str(score1)} - {str(score2)}", True, WHITE)
     screen.blit(score_text, (SCREEN_WIDTH / 2 - score_text.get_width() / 2, 10))
 
     # Update the display

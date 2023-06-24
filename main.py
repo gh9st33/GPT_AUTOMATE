@@ -19,23 +19,22 @@ class agent_coordinator():
 
 		self.openaiObject = getOpenAPIKey()
 
-		if(self.state =='not started'):
+		if (self.state =='not started'):
 			self.classifier.get_requirements(self.openaiObject)
-			if(self.classifier.problem_state == 'solvable_with_code'):
+			if (self.classifier.problem_state == 'solvable_with_code'):
 				
 				# IMPORT METRICS 
 				self.problemStatement     = self.classifier.problemStatement
-				self.deliverableStatement = self.classifier.currentResponse 
+				self.deliverableStatement = self.classifier.currentResponse
 				self.no_deliverables         = self.classifier.no_deliverables
 				self.state = 'decompose'
-				
-				print('Deliverables : ' + str(self.no_deliverables))
+
+				print(f'Deliverables : {str(self.no_deliverables)}')
 				cprint('Complete! press any key to proceed to the next step', 'white')
-				input('')
 			else:
 				self.state = 'complete'
 				cprint('Complete! Problem is not solvable with code unfortunately', 'red')
-				input('')
+			input('')
 		if(self.state =='decompose'):
 			decompose(self.openaiObject)
 

@@ -42,7 +42,7 @@ def predict_next_prices():
     forex_prices = forex_collection.find()
 
     # Convert the forex prices to a list
-    forex_prices_list = [price for price in forex_prices]
+    forex_prices_list = list(forex_prices)
 
     # Predict the next forex prices for the next five days using a naive algorithm
     predicted_prices = []

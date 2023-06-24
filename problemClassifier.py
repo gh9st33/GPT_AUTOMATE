@@ -23,14 +23,9 @@ class ProblemClassifier:
 
         user_input = input("Please describe your problem: ")
         self.problemStatement = user_input
-        
-        # -----------------SAVE PROBLEM STATEMENT
 
-        f = open('workspace/statement.txt','w')
-        f.write(user_input)
-        f.close()
-        
-
+        with open('workspace/statement.txt','w') as f:
+            f.write(user_input)
         # -----------------CONSTRUCT THE PROMPT
 
 
@@ -140,7 +135,7 @@ class ProblemClassifier:
         self.fullDialogue    += prompt + ' \n' + self.currentResponse
 
         os.system('clear')
-        
+
         # -----------------VALIDATE DELIVERABLES 
 
 
@@ -168,7 +163,7 @@ class ProblemClassifier:
             os.makedirs(workspace_dir)
         with open(os.path.join(workspace_dir, "classifiedProblems.yaml"), "w") as file:
             file.write(self.currentResponse + "\n\n")
-        
+
 
         # VALIDATE YAML
         passed = validate_yaml('workspace/classifiedProblems.yaml')

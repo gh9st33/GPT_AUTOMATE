@@ -3,8 +3,12 @@ player1_score = 0 # Set initial score for player 1
 player2_score = 0 # Set initial score for player 2
 
 def update_scores(): # Function to update score display
-    score1 = score_font.render('Player 1 Score: ' + str(player1_score), True, (255, 255, 255))
-    score2 = score_font.render('Player 2 Score: ' + str(player2_score), True, (255, 255, 255))
+    score1 = score_font.render(
+        f'Player 1 Score: {str(player1_score)}', True, (255, 255, 255)
+    )
+    score2 = score_font.render(
+        f'Player 2 Score: {str(player2_score)}', True, (255, 255, 255)
+    )
     screen.blit(score1, (50, 50))
     screen.blit(score2, (screen_width - score2.get_width() - 50, 50))
 
@@ -69,9 +73,7 @@ while True: # Main game loop
             ball.bounce(player2)
 
         # Check for collision between ball and walls
-        if ball.y < 0:
-            ball.angle = -ball.angle
-        elif ball.y > screen_height:
+        if ball.y < 0 or ball.y > screen_height:
             ball.angle = -ball.angle
         elif ball.x < 0:
             player2_score += 1

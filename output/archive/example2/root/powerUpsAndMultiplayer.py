@@ -43,13 +43,11 @@ class Paddle:
     
     def move_up(self):
         self.rect.y -= self.speed
-        if self.rect.top < 0:
-            self.rect.top = 0
+        self.rect.top = max(self.rect.top, 0)
     
     def move_down(self):
         self.rect.y += self.speed
-        if self.rect.bottom > WINDOW_HEIGHT:
-            self.rect.bottom = WINDOW_HEIGHT
+        self.rect.bottom = min(self.rect.bottom, WINDOW_HEIGHT)
 
 class Ball:
     def __init__(self):

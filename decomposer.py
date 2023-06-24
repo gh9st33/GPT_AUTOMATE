@@ -11,19 +11,14 @@ def generate_code(prompt,openaiObject):
     print('')
     cprint('Sending Request', 'yellow',attrs=['blink'])
     availableResponses   = openaiObject.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": prompt}])
-    currentResponse = availableResponses['choices'][0]['message']['content'].lstrip()
-
-    return currentResponse
+    return availableResponses['choices'][0]['message']['content'].lstrip()
 
 def process_deliverable(yaml_content, desired_deliverable,openaiObject):
     
-    # Find the desired deliverable
-    deliverable = None
-    for d in yaml_content:
-        if d['DELIVERABLE'] == desired_deliverable:
-            deliverable = d
-            break
-
+    deliverable = next(
+        (d for d in yaml_content if d['DELIVERABLE'] == desired_deliverable),
+        None,
+    )
     if deliverable is None:
         raise ValueError(f'DELIVERABLE: {desired_deliverable} not found.')
 
@@ -62,7 +57,7 @@ def process_deliverable(yaml_content, desired_deliverable,openaiObject):
             f.write(code_chunk)
 
         cprint('Saved', 'yellow')
-        
+
         # 
         if('JOB_COMPLETE' in code_chunk):
             cprint('Job Complete', 'white')

@@ -54,14 +54,10 @@ def draw_paddles():
 
     # Move AI paddle
     if ball_x_direction == 1:
-        if ball_y + ball_height / 2 > player2_paddle_y + paddle_height / 2:
-            ai_paddle_down = True
-        else:
-            ai_paddle_down = False
-        if ball_y + ball_height / 2 < player2_paddle_y + paddle_height / 2:
-            ai_paddle_up = True
-        else:
-            ai_paddle_up = False
+        ai_paddle_down = (
+            ball_y + ball_height / 2 > player2_paddle_y + paddle_height / 2
+        )
+        ai_paddle_up = ball_y + ball_height / 2 < player2_paddle_y + paddle_height / 2
     else:
         ai_paddle_up = False
         ai_paddle_down = False
@@ -174,14 +170,10 @@ def draw_paddles():
 
     # Move AI paddle
     if ball_x_direction == 1:
-        if ball_y + ball_height / 2 > player2_paddle_y + paddle_height / 2:
-            ai_paddle_down = True
-        else:
-            ai_paddle_down = False
-        if ball_y + ball_height / 2 < player2_paddle_y + paddle_height / 2:
-            ai_paddle_up = True
-        else:
-            ai_paddle_up = False
+        ai_paddle_down = (
+            ball_y + ball_height / 2 > player2_paddle_y + paddle_height / 2
+        )
+        ai_paddle_up = ball_y + ball_height / 2 < player2_paddle_y + paddle_height / 2
     else:
         ai_paddle_up = False
         ai_paddle_down = False
